@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'ebfirebasetest.firebasestorage.app',
     iosBundleId: 'com.example.caFirebaseApp',
   );
+
 }

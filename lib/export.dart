@@ -57,21 +57,3 @@ export 'package:ca_firebase_app/Core/error/dbfailure.dart';
 export 'package:ca_firebase_app/Core/usecases/usecase.dart';
 export 'package:ca_firebase_app/Core/utils/typedef.dart';
 //data
-
-export 'package:ca_firebase_app/features/authentication/data/repositories/authentication_repository_implementation.dart';
-export 'package:ca_firebase_app/features/authentication/data/models/user_model.dart';
-export 'package:ca_firebase_app/features/authentication/data/datasources/authentication_remote_data_source.dart';
-export 'package:ca_firebase_app/features/authentication/data/models/db_user_creation_req_mod.dart';
-//domain
-export 'package:ca_firebase_app/features/authentication/domain/entities/user.dart';
-export 'package:ca_firebase_app/features/authentication/domain/repositories/authentication_repository.dart';
-export 'package:ca_firebase_app/features/authentication/domain/usecases/get_users.dart';
-export 'package:ca_firebase_app/features/authentication/domain/usecases/create_user.dart';
-//presentation
-export 'package:ca_firebase_app/features/authentication/presentation/views/home_screen.dart';
-export 'package:ca_firebase_app/features/authentication/presentation/widgets/add_user_dialog.dart';
-export 'package:ca_firebase_app/features/authentication/presentation/widgets/loading_column.dart';
-
-//cubit/bloc
-export 'package:ca_firebase_app/features/authentication/presentation/cubit/authentication_cubit.dart';
-export 'package:ca_firebase_app/features/authentication/presentation/bloc/authentication_bloc.dart';

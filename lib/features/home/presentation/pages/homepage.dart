@@ -8,6 +8,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+            child: Column(
+          children: [
+            const Text('Main Page'),
+            const SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, HomePage.route());
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppPallete.whiteColor,
+                    foregroundColor: AppPallete.errorColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    )),
+                child: const Text('DP Todo home screen'))
+          ],
+        )),
+      ),
+    );
   }
 }

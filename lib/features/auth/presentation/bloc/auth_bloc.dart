@@ -32,6 +32,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthIsUserLoggedIn>(_isUserLoggedIn);
   }
 
+//TODO: Need to complete
   void _isUserLoggedIn(
     AuthIsUserLoggedIn event,
     Emitter<AuthState> emit,
@@ -51,14 +52,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final res = await _userSignUp(
-        // UserSignUpParams(
-        //   email: event.email,
-        //   password: event.password,
-        //   name: event.name,
-
-        // ),
-
-        );
+      params: UserCreationModel(
+        firstName: event.firstName,
+        email: event.email,
+        password: event.password,
+        lastName: event.lastName,
+      ),
+    );
 
     res.fold(
       (failure) => emit(AuthFailure(failure.message)),
@@ -71,12 +71,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     final res = await _userLogin(
-        //usecase
-        // UserLoginParams(
-        //   email: event.email,
-        //   password: event.password,
-        // ),
-        );
+      params: UserSigninModel(
+        email: event.email,
+        password: event.password,
+      ),
+    );
 
     res.fold(
       (l) => emit(AuthFailure(l.message)),
@@ -84,6 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+//TODO: Need to be completed
   void _emitAuthSuccess(
     CaUserEntity user,
     Emitter<AuthState> emit,

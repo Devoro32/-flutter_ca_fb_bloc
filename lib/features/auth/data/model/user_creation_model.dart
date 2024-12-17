@@ -3,8 +3,6 @@ class UserCreationModel {
   String? lastName;
   String? email;
   String? password;
-  int? gender;
-  String? age;
 
   UserCreationModel(
       {required this.firstName,

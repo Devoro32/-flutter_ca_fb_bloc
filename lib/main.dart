@@ -1,10 +1,21 @@
 import 'package:ca_firebase_app/export.dart';
 
-void main() async {
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //TODO: Can't this be moved into initializedependencies?
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await initializeDependencies();
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (_) => getIt<AuthBloc>(),
+      ),
+      // BlocProvider(create: (_) => getIt<AuthenticationCubit>()),
+      // BlocProvider(create: (context) => TaskTabSelectionCubit()),
+      // BlocProvider(create: (context) => getIt<DptodoBloc>()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,61 +24,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      https: //stackoverflow.com/questions/72895721/firebasecloudmessaging-platformexception-platformexceptionnull-error-host-p
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      title: 'Clean Architecture',
+      theme: AppTheme.darkThemeMode,
+      debugShowCheckedModeBanner: false,
+      home: const LoginPage(),
     );
   }
 }

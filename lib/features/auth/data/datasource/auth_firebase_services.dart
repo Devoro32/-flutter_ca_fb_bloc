@@ -26,8 +26,6 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
         'firstName': user.firstName,
         'lastName': user.lastName,
         'email': user.email,
-        'gender': user.gender,
-        'age': user.age,
         'userId': returnedData.user!.uid
       });
 

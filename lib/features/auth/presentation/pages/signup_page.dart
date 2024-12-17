@@ -11,16 +11,18 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    nameController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
     super.dispose();
   }
 
@@ -61,8 +63,13 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   const SizedBox(height: 30),
                   AuthField(
-                    hintText: 'Name',
-                    controller: nameController,
+                    hintText: 'First Name',
+                    controller: firstNameController,
+                  ),
+                  const SizedBox(height: 15),
+                  AuthField(
+                    hintText: 'Last Name',
+                    controller: lastNameController,
                   ),
                   const SizedBox(height: 15),
                   AuthField(
@@ -82,9 +89,10 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (formKey.currentState!.validate()) {
                         context.read<AuthBloc>().add(
                               AuthSignUp(
+                                firstName: firstNameController.text.trim(),
                                 email: emailController.text.trim(),
                                 password: passwordController.text.trim(),
-                                name: nameController.text.trim(),
+                                lastName: lastNameController.text.trim(),
                               ),
                             );
                       }
